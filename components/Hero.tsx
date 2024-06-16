@@ -6,7 +6,7 @@ import { heroVideo, smallHeroVideo } from '@/utils/index'
 import Link from 'next/link'
 
 function Hero() {
-  const [videoSrc, setVideoSrc] = useState(window.innerWidth < 768 ? smallHeroVideo : heroVideo)
+  const [videoSrc, setVideoSrc] = useState('')
 
   const handleVideosrcSet = () => {
     if (window.innerWidth < 768) {
@@ -17,6 +17,8 @@ function Hero() {
   }
 
   useEffect(() => {
+    setVideoSrc(window.innerWidth < 768 ? smallHeroVideo : heroVideo)
+
     window.addEventListener('resize', handleVideosrcSet)
     return () => window.removeEventListener('resize', handleVideosrcSet)
   }, [])
